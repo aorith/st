@@ -11,20 +11,36 @@ depends=('libxft' 'libxext' 'xorg-fonts-misc')
 makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
-        config.h)
-sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
-            'bed7977c855f02e3968a754e813015e4214b52102e3c54712d8a52245bcceeec')
+        config.h
+        https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
+        https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
+        https://st.suckless.org/patches/alpha/st-alpha-0.8.1.diff
+        https://st.suckless.org/patches/xresources/st-xresources-20180309-c5ba9c0.diff)
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP'
+            'SKIP')
 
 prepare() {
   cd $srcdir/$pkgname-$pkgver
   # skip terminfo which conflicts with nsurses
   sed -i '/tic /d' Makefile
   cp $srcdir/config.h config.h
+  #patches
+  rm -f *.diff
+  cp $srcdir/*.diff .
+  patch -p1 -i st-scrollback-0.8.diff
+  patch -p1 -i st-scrollback-mouse-0.8.diff
+  patch -p1 -i st-alpha-0.8.1.diff
+  patch -p1 -i st-xresources-20180309-c5ba9c0.diff
 }
 
 build() {
   cd $srcdir/$pkgname-$pkgver
-  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  #make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  make
 }
 
 package() {

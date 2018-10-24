@@ -1,0 +1,6 @@
+st-0.8.1.tar.gz
+src/
+st-scrollback-0.8.diff
+*.diff
+pkg/
+*.xz
