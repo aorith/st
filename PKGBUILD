@@ -14,11 +14,11 @@ source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
         https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
         https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
-        https://st.suckless.org/patches/alpha/st-alpha-0.8.1.diff
+        #https://st.suckless.org/patches/alpha/st-alpha-0.8.1.diff
         https://st.suckless.org/patches/xresources/st-xresources-20180309-c5ba9c0.diff)
 sha256sums=('SKIP'
             'SKIP'
-            'SKIP'
+            #'SKIP'
             'SKIP'
             'SKIP'
             'SKIP')
@@ -33,7 +33,7 @@ prepare() {
   cp $srcdir/*.diff .
   patch -p1 -i st-scrollback-0.8.diff
   patch -p1 -i st-scrollback-mouse-0.8.diff
-  patch -p1 -i st-alpha-0.8.1.diff
+  #patch -p1 -i st-alpha-0.8.1.diff
   patch -p1 -i st-xresources-20180309-c5ba9c0.diff
 }
 
