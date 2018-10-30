@@ -84,10 +84,10 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-/*unsigned int alpha = 0xed;*/
+unsigned int alpha = 0xed;
 
 static const char *colorname[] = {
-	"#073642",  /*  0: black    */
+	"#00080a",  /*  0: black    */
 	"#dc322f",  /*  1: red      */
 	"#859900",  /*  2: green    */
 	"#b58900",  /*  3: yellow   */
@@ -111,10 +111,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
+unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
 static unsigned int defaultcs = 10;
-static unsigned int defaultrcs = 15;
+static unsigned int defaultrcs = 11;
 
 /*
  * Default shape of cursor
