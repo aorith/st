@@ -4,3 +4,4 @@ st-scrollback-0.8.diff
 *.diff
 pkg/
 *.xz
+*.tar*

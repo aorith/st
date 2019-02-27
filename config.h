@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:pixelsize=14:antialias=true:autohint=true";
+static char *font = "mono:pixelsize=16:antialias=true:autohint=true";
 /*static char *font = "-misc-fixed-*-r-*-*-15-*-*-*-*-*-*-*";*/
 static int borderpx = 2;
 
@@ -115,6 +115,7 @@ static const char *colorname[] = {
 	"#a9a9a9",
 	"#555555",
     "#000000",
+    "#f9f9f9",
 };
 
 
@@ -122,10 +123,10 @@ static const char *colorname[] = {
 * Default colors (colorname index)
 * foreground, background, cursor, reverse cursor
 */
-unsigned int defaultfg = 7;
+unsigned int defaultfg = 259;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 13;
+static unsigned int defaultcs = 15;
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -189,6 +190,7 @@ ResourcePref resources[] = {
 		{ "tabspaces",    INTEGER, &tabspaces },
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
+        { "alpha",        INTEGER, &alpha },
 };
 
 /*
@@ -201,13 +203,14 @@ static MouseShortcut mshortcuts[] = {
 	{ Button5,              ShiftMask,      "\005" },
 };
 
-MouseKey mkeys[] = {
+/* Mouse patch still not working for 0.8.2 as of 2019.02.12 */
+/*MouseKey mkeys[] = { */
 	/* button               mask            function        argument */
 /*	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
 	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} }, */
-	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
+/*	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
 	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
-};
+}; */
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
@@ -227,7 +230,7 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_p,           selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
+/*	{ MODKEY,               XK_Control_L,   iso14755,       {.i =  0} }, */
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
@@ -244,6 +247,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY|ShiftMask,     XK_J,           zoom,           {.f = -1} },
 	{ MODKEY|ShiftMask,     XK_U,           zoom,           {.f = +2} },
 	{ MODKEY|ShiftMask,     XK_D,           zoom,           {.f = -2} },
+	{ ControlMask,          XK_plus,        zoom,           {.f = +1} },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1} },
 };
 
 /*

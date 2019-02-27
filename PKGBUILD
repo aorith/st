@@ -2,7 +2,7 @@
 # Maintainer: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st
-pkgver=0.8.1
+pkgver=0.8.2
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
@@ -12,10 +12,11 @@ makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
-        https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
+        #https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
+        https://st.suckless.org/patches/scrollback/st-scrollback-20190122-3be4cf1.diff
         https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
         https://st.suckless.org/patches/alpha/st-alpha-0.8.1.diff
-        https://st.suckless.org/patches/xresources/st-xresources-20180309-c5ba9c0.diff)
+        https://st.suckless.org/patches/xresources/st-xresources-20190105-3be4cf1.diff)
 sha256sums=('SKIP'
             'SKIP'
             'SKIP'
@@ -31,10 +32,10 @@ prepare() {
   #patches
   rm -f *.diff
   cp $srcdir/*.diff .
-  patch -p1 -i st-scrollback-0.8.diff
-  patch -p1 -i st-scrollback-mouse-0.8.diff
-  patch -p1 -i st-alpha-0.8.1.diff
-  patch -p1 -i st-xresources-20180309-c5ba9c0.diff
+  patch -p1 -i st-scrollback-2019*.diff
+#  patch -p1 -i st-scrollback-mouse-0.8.diff
+#  patch -p1 -i st-alpha-0.8.1.diff
+  patch -p1 -i st-xresources-2019*.diff
 }
 
 build() {
